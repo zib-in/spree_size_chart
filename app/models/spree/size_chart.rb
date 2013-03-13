@@ -12,6 +12,8 @@ module Spree
     accepts_nested_attributes_for :size_values, :allow_destroy => true
     attr_accessible :size_values_attributes, :size_type_ids, :unit, :option_type_id, :size_prototype_id
 
+    validates :product_id, :unit, :option_type_id, :size_type_ids, :presence => true
+
     def size_values_attributes_with_sanity_check=(attributes)
       attributes.each_value do |attrs|
         if attrs['value'].blank?
