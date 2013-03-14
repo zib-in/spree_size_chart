@@ -9,9 +9,11 @@ module Spree
       def update
         if @size_chart.update_attributes params[:size_chart]
           flash[:notice] = "Size Chart successfully updated"
+          redirect_to edit_admin_product_size_chart_path(parent)
         else
+          invoke_callbacks(:update, :fails)
+          respond_with(@object)
         end
-        redirect_to edit_admin_product_size_chart_path(parent)
       end
 
       def collection_url
